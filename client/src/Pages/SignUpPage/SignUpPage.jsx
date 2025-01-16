@@ -180,10 +180,11 @@ export default function SignUpPage() {
           <div className="flex justify-center">Already have an account?</div>
          
             <Link to="/signin" className="flex justify-center">
-            <button className="text-white bg-orange-400 rounded-2xl w-1/2 flex justify-center items-center  hover:bg-orange-500">
-              <span className="text-lg font-medium hover:text-red-800">
-                Sign in
+            <button className="bg-gray-200 rounded-2xl w-1/2 flex justify-center items-center hover:bg-gray-50">
+              <span className="text-lg font-medium hover:text-red-800 w-fit mr-3 p-2">
+                Log in with 
               </span>
+              <img src="1.png" alt="Signup with" className="w-24" />
             </button>
           </Link>
           
