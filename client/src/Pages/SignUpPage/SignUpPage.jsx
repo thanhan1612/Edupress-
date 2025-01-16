@@ -167,9 +167,10 @@ export default function SignUpPage() {
             >
               <FontAwesomeIcon icon={showConfirmPassword ? faEyeSlash : faEye} />
             </button>
-            {error && <div className="text-red-500 mb-4">{error}</div>}
-            {success && <div className="text-green-500 mb-4">{success}</div>}
+            
           </div>
+          {error && <div className="text-red-500 mb-4">{error}</div>}
+            {success && <div className="text-green-500 mb-4">{success}</div>}
           <button className="bg-orange-500 text-xl text-white font-semibold p-2 my-5 rounded-2xl hover:bg-orange-600">
             Register
           </button>
