@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import userRouters from "./Routes/userRoutes.js";
 import { errorMiddlewares } from "./Middlewares/errorMiddlewares.js";
+import adminRouters from "./Routes/adminRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/users', userRouters)
+app.use('/api/admins', adminRouters)
 
 
 app.use(errorMiddlewares);
