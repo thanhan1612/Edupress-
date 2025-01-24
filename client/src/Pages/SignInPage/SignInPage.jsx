@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { Link, useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
+import { useGoogleLogin } from "@react-oauth/google";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { RecoveryContext } from "../../App";
 
 
 const SECRET_KEY = import.meta.env.VITE_SECRET_KEY; 
@@ -65,9 +67,25 @@ export default function SignInPage() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const {setEmail,email,setOTP} =useContext(RecoveryContext)
   const navigate = useNavigate();
 
-
+  function navigateToOtp() {
+      
+    if (formData.email) {
+      const OTP = Math.floor(Math.random()*9000+1000);
+      localStorage.setItem("email",formData.email)
+      setEmail(formData.email);
+      console.log(OTP);
+      setOTP(OTP);
+      axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/otpsend`, {
+        OTP,
+        recepient_email:formData.email
+      }).then(() => navigate("/otpsend")).catch(console.log);
+      return;
+    }
+    return alert("Please enter your email");
+  }
   useEffect(() => {
     const storedEmail = localStorage.getItem("email") || sessionStorage.getItem("email");
     const storedEncryptedPassword = localStorage.getItem("password") || sessionStorage.getItem("password");
@@ -88,8 +106,49 @@ export default function SignInPage() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+    console.log(email);
+      // Set email to context
   };
+  const login = useGoogleLogin({
+    flow: 'redirect',
+    onSuccess: (tokenResponse) => {
+      
+      var response = jwtDecode(tokenResponse.credential)
+      console.log("Login Successful!", response);
+      handleGoogleLogin(response);
 
+    },
+    onError: (error) => {
+      console.log("Login Failed", error);
+    },
+  });
+  const handleGoogleLogin = async (user) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/signInGoogle`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: user.email,
+      
+          googleId: user.sub, 
+        }),
+      });
+  
+      const data = await response.json();
+      if (data.success) {
+        console.log("Login successful:", data);
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+      } else {
+        console.error("Login failed:", data.message);
+      }
+    } catch (error) {
+      console.error("Error during Google login:", error);
+    }
+  };
+  
   const handleForm = async (e) => {
     e.preventDefault();
     setErrorLogIn("");
@@ -200,10 +259,10 @@ export default function SignInPage() {
           </button>
         </form>
         <div className="mb-10 w-full flex justify-center items-center flex-col">
-          <div className="flex justify-center text-blue-500 mb-5">Forgot Password?</div>
+          <div className="flex justify-center text-blue-500 mb-5" onClick= {() => navigateToOtp()}>Forgot Password?</div>
           <Link to="/signin" className="flex justify-center">
-            <button className="bg-gray-200 rounded-2xl w-1/2 flex justify-center items-center hover:bg-gray-500">
-              <span className="text-lg font-medium hover:text-red-800 w-fit mr-3 p-2">
+            <button className="bg-gray-200 rounded-2xl w-1/2 flex justify-center items-center hover:bg-gray-500" onClick={() => login()}>
+              <span className="text-lg font-medium hover:text-red-800 w-fit mr-3 p-2" >
                 Log In with 
               </span>
               <img src="1.png" alt="Signup with" className="w-24" />

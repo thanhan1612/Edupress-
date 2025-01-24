@@ -22,6 +22,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({limit:"25mb"}));
+app.use((req,res,next) => {
+  res.setHeader("Access-Control-Allow_Origin","*");
+  next();
+})
 
 app.use('/api/users', userRouters)
 app.use('/api/admins', adminRouters)
