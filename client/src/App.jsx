@@ -7,6 +7,7 @@ import SignInPage from './Pages/SignInPage/SignInPage';
 import OTPverify from "./Pages/OTPsend/OTPsend";
 import Reset from "./Pages/OTPsend/Reset";
 import { createContext, useState } from "react";
+import Courses from "./Pages/AllCourses/AllCourses";
 
 
 export const RecoveryContext = createContext();
@@ -27,6 +28,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path = "/otpsend" element = {<OTPverify />} />
           <Route path = "/reset" element = {<Reset />} />
+          <Route path = "/courses" element = {<Courses />} />
         </Routes>
       </Router>
     
