@@ -126,14 +126,16 @@ const Courses = () => {
                     </Grid>
                    
                     </Box>))}
-                    <Box sx={{ display: "flex",flexDirection:"row", justifyContent: "center", mt: 3, width:"100%" }}>
-                            <Pagination
-                                count={5}
-                                variant="outlined"
-                                shape="rounded"
-                                size="small"
-                                
-                            />
+                    <Box 
+                        sx={{ 
+                            display: "flex", 
+                            justifyContent: "center",  
+                            alignItems: "center",  
+                            width: "100%",
+                            mt: 3 
+                        }}
+                        >
+                    <Pagination count={5} size="small" sx={{ display: "inline-flex", width: "auto" }} />
                     </Box>
 
                    
@@ -171,6 +173,7 @@ const Courses = () => {
             </div>
         </div>
         
+       
        
         
       </Container>

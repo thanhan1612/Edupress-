@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
-
+import Contact from "./Pages/Contact/Contact";
 import HomePage from './Pages/HomePage/HomePage';
 import SignUpPage from './Pages/SignUpPage/SignUpPage';
 import SignInPage from './Pages/SignInPage/SignInPage';
@@ -29,6 +29,7 @@ function App() {
           <Route path = "/otpsend" element = {<OTPverify />} />
           <Route path = "/reset" element = {<Reset />} />
           <Route path = "/courses" element = {<Courses />} />
+          <Route path ="/homepage/contact" element ={<Contact />} />
         </Routes>
       </Router>
     
