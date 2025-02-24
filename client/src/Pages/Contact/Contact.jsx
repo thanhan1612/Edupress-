@@ -27,9 +27,12 @@ const Contact =() =>{
                 </Box>
                 <img src ="/map.png"/>
             </Box>
-            <Box>
+            <Box className="pt-16">
                 <Typography variant ="h2">Contact us</Typography>
-
+                <Typography variant = "p">Your email address will not be published. Required fields are marked *</Typography>
+                <Box component={form}>
+                    
+                </Box>
             </Box>
         </Container>
     )
