@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Container,Box,Typography } from "@mui/material";
+import { Container,Box,Typography, TextField, Checkbox } from "@mui/material";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 const Contact =() =>{
@@ -30,9 +30,16 @@ const Contact =() =>{
             <Box className="pt-16">
                 <Typography variant ="h2">Contact us</Typography>
                 <Typography variant = "p">Your email address will not be published. Required fields are marked *</Typography>
-                <Box component={form}>
-                    
+                <Box >
+                    <form>
+                        <Box className ="flex flex-row justify-between">
+                            <TextField className="w-[48%]" label = "Name*"/>
+                            <TextField className="w-[48%]" label = "Email*"/>
+                        </Box>
+                            <TextField label = "Comment" />
+                    </form>
                 </Box>
+                <Checkbox label ="Save"/>
             </Box>
         </Container>
     )
