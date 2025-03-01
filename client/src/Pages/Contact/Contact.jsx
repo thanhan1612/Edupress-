@@ -6,7 +6,11 @@ import EmailIcon from '@mui/icons-material/Email';
 const Contact =() =>{
     const [formdata,setFormdata] = useState({
         name:"",email:"",data:""
-    })
+    });
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormdata((prevData) => ({ ...prevData, [id]: value }));
+        
     return (
         <Container maxWidth="lg" sx={{ flexGrow: 1, minHeight: "50vh", p: 2 }}>
             <Box className="flex gap-8">
@@ -36,8 +40,8 @@ const Contact =() =>{
                 <Box >
                     <form >
                         <Box className ="flex flex-row justify-between">
-                            <TextField className="w-[48%]" label = "Name*"/>
-                            <TextField className="w-[48%] " label = "Email*"/>
+                            <TextField className="w-[48%]" label = "Name*" onChange={handleChange}/>
+                            <TextField className="w-[48%] " label = "Email*" onChange={handleChange}/>
                         </Box>
                             <TextField label = "Comment" sx ={{marginTop:4}} />
                     </form>

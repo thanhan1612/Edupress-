@@ -11,5 +11,5 @@ userRouters.post('/signInUser',signInUser);
 userRouters.post('/otpsend',SendEmailToUser);
 userRouters.post('/changePassword',ChangePassword);
 userRouters.get('/courses',getCourses);
-
+userRouters.post('/contact')
 export default userRouters;
