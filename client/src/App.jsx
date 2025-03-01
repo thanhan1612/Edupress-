@@ -1,40 +1,37 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
+import "./App.css";
 import Contact from "./Pages/Contact/Contact";
-import HomePage from './Pages/HomePage/HomePage';
-import SignUpPage from './Pages/SignUpPage/SignUpPage';
-import SignInPage from './Pages/SignInPage/SignInPage';
+import HomePage from "./Pages/HomePage/HomePage";
+import SignUpPage from "./Pages/SignUpPage/SignUpPage";
+import SignInPage from "./Pages/SignInPage/SignInPage";
 import OTPverify from "./Pages/OTPsend/OTPsend";
 import Reset from "./Pages/OTPsend/Reset";
 import { createContext, useState } from "react";
 import Courses from "./Pages/AllCourses/AllCourses";
-
+import BlogListing from "./Pages/BlogListing/BlogListing";
 
 export const RecoveryContext = createContext();
 function App() {
-  const [page,setPage] = useState('/signin')
-  const [email,setEmail] = useState("");
-  const [otp,setOTP] = useState();
- 
+  const [page, setPage] = useState("/signin");
+  const [email, setEmail] = useState("");
+  const [otp, setOTP] = useState();
 
   return (
-   <RecoveryContext.Provider value = {{setPage,page,otp,setOTP,setEmail,email}}>
-
-     
+    <RecoveryContext.Provider
+      value={{ setPage, page, otp, setOTP, setEmail, email }}>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path = "/otpsend" element = {<OTPverify />} />
-          <Route path = "/reset" element = {<Reset />} />
-          <Route path = "/courses" element = {<Courses />} />
-          <Route path ="/homepage/contact" element ={<Contact />} />
+          <Route path="/otpsend" element={<OTPverify />} />
+          <Route path="/reset" element={<Reset />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/homepage/contact" element={<Contact />} />
+          <Route path="/blog" element={<BlogListing />} />
         </Routes>
       </Router>
-    
-      </RecoveryContext.Provider>
-    
+    </RecoveryContext.Provider>
   );
 }
 
