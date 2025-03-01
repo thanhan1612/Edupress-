@@ -51,5 +51,5 @@ const Contact =() =>{
             </Box>
         </Container>
     )
-};
+}};
 export default Contact;

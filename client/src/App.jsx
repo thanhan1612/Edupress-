@@ -14,7 +14,7 @@ import { createContext, useState } from "react";
 
 import Header from './components/Header';
 import Home from "./pages/Home";
-import Courses from './components/Courses';
+
 
 import Courses from "./Pages/AllCourses/AllCourses";
 
@@ -38,7 +38,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/login" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path = "/otpsend" element = {<OTPverify />} />
           <Route path = "/reset" element = {<Reset />} />
