@@ -1,9 +1,16 @@
 
-import React from "react";
-import { Container,Box,Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Container,Box,Typography, TextField, Checkbox, FormControlLabel,Button } from "@mui/material";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 const Contact =() =>{
+    const [formdata,setFormdata] = useState({
+        name:"",email:"",data:""
+    });
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormdata((prevData) => ({ ...prevData, [id]: value }));
+        
     return (
         <Container maxWidth="lg" sx={{ flexGrow: 1, minHeight: "50vh", p: 2 }}>
             <Box className="flex gap-8">
@@ -27,14 +34,22 @@ const Contact =() =>{
                 </Box>
                 <img src ="/map.png"/>
             </Box>
-            <Box className="pt-16">
+            <Box className="pt-16 flex flex-col gap-4">
                 <Typography variant ="h2">Contact us</Typography>
                 <Typography variant = "p">Your email address will not be published. Required fields are marked *</Typography>
-                <Box component={form}>
-                    
+                <Box >
+                    <form >
+                        <Box className ="flex flex-row justify-between">
+                            <TextField className="w-[48%]" label = "Name*" onChange={handleChange}/>
+                            <TextField className="w-[48%] " label = "Email*" onChange={handleChange}/>
+                        </Box>
+                            <TextField label = "Comment" sx ={{marginTop:4}} />
+                    </form>
                 </Box>
+               <FormControlLabel control={<Checkbox sx = {{width:40}} />} label="Save my name, email in this brower for the next time I comment" />
+                <Button variant = "contained" className = "w-1/6 " sx ={{borderRadius:8,backgroundColor:"orange"}}>Post Comment</Button>
             </Box>
         </Container>
     )
-};
+}};
 export default Contact;

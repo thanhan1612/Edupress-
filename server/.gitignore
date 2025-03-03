@@ -22,9 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-<<<<<<< HEAD
 
 
 package-lock.json
-=======
->>>>>>> origin/main1
