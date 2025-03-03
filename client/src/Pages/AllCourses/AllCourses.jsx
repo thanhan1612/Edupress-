@@ -19,6 +19,36 @@ import Checkbox from "@mui/material/Checkbox";
 
 const Courses = () => {
     const [allcourses,setAllcourses] = useState([]);
+    const usePagination = (data,courseperpage) => {
+        const [currentPage,setCurrentPage] = useState(1);
+        const maxPage = Math.ceil(data.length/courseperpage);
+        const currentData = () => {
+            const begin = (currentPage-1) * courseperpage;
+            const end = begin * courseperpage;
+            return data.slice(begin,end);
+        };
+        const next =() => {
+            setCurrentPage(currentPage => Math.min(currentPage+1,maxPage))
+        }
+        const prev =() => {
+            setCurrentPage(currentPage => Math.max(currentPage-1,maxPage));
+        }
+        const jump = (page) => {
+            const pageNumber = Math.max(1,page);
+            setCurrentPage(currentPage => Math.min(pageNumber,maxPage));
+
+        }
+        return {next,prev,jump,currentData,currentPage,maxPage}
+        
+     };
+     const [page,setPage] =useState(1);
+     const Per_page = 2;
+     const count = Math.ceil(allcourses.length/ Per_page);
+     const coursedata = usePagination(allcourses,Per_page);
+     const handleChangecount = (e,p) => {
+        setPage(p);
+        coursedata.jump(p);
+     }
     useEffect(() => {
         let isMounted = true;  // Flag to track component mount status
     
@@ -135,7 +165,7 @@ const Courses = () => {
                             mt: 3 
                         }}
                         >
-                    <Pagination count={5} size="small" sx={{ display: "inline-flex", width: "auto" }} />
+                    <Pagination count={count} size="small" page={page} onChange ={handleChangecount}sx={{ display: "inline-flex", width: "auto" }} />
                     </Box>
 
                    
