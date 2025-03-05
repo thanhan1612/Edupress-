@@ -2,12 +2,22 @@ import React, { useContext } from 'react';
 import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-
+import { useEffect } from 'react';
 import './Header.css';
 import { Avatar } from '@mui/material';
+import { useState } from 'react';
 
 const Header = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [user,setUser] = useState(null)
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+    setUser(currentUser);
+  }, []); // Run only once on mount
+  const logout = () => {
+    localStorage.removeItem("user")
+    setUser(null);
+  }
   return (
     <header className="header">
       <div className="container">
@@ -31,9 +41,12 @@ const Header = () => {
 
         {/* Search & Auth */}
         {user ? (
+          <div className='flex flex-row gap-2'>
           <div className='flex flex-row items-center gap-1 border-2 rounded-lg p-2'>
             <h1>{user.userName}</h1>
             <Avatar>{user.userName.charAt(0)}</Avatar>
+          </div>
+            <button onClick={logout}>Logout</button>
           </div>
         ): 
         (<div className="header-actions">
