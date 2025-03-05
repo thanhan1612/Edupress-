@@ -7,15 +7,13 @@ import SignInPage from "./Pages/SignInPage/SignInPage";
 import OTPverify from "./Pages/OTPsend/OTPsend";
 import Reset from "./Pages/OTPsend/Reset";
 import { createContext, useState } from "react";
-
 import Header from './components/Header';
 import Home from "./pages/Home";
-
-
 import Courses from "./Pages/AllCourses/AllCourses";
 import BlogListingLayout from "./Pages/BlogListing/BlogListingLayout";
 import BlogDetail from "./Pages/BlogListing/BlogDetail";
 import BlogList from "./Pages/BlogListing/BlogComponents/BlogList";
+import { AuthContext } from "./Context.jsx";
 
 
 export const RecoveryContext = createContext();
@@ -91,6 +89,7 @@ function App() {
   };
   // END OF BLOG PAGE________________________________________________________________
   return (
+    
     <RecoveryContext.Provider
       value={{ setPage, page, otp, setOTP, setEmail, email }}>
       <Router>
@@ -133,6 +132,7 @@ function App() {
         </Routes>
       </Router>
     </RecoveryContext.Provider>
+   
   );
 }
 

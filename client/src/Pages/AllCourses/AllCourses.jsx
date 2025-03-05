@@ -19,23 +19,36 @@ import Checkbox from "@mui/material/Checkbox";
 
 const Courses = () => {
     const [allcourses,setAllcourses] = useState([]);
+    const [selectedCategories,setSelectedCategories] =useState([]);
+    const categories = ["Maths","Computer Science", "Literature"]
+    const handleCategoryChange = (e) => {
+        const {checked,value} = e.target;
+        setSelectedCategories((prev) =>
+            checked ? [...prev, value] : prev.filter((cat) => cat !== value)
+          );
+          setPage(1);
+    };
+    const filterCourses =   selectedCategories.length > 0
+    ? allcourses.filter((course) => selectedCategories.includes(course.category))
+    : allcourses;
+
     const usePagination = (data,courseperpage) => {
         const [currentPage,setCurrentPage] = useState(1);
-        const maxPage = Math.ceil(data.length/courseperpage);
+        const maxPage = Math.ceil(filterCourses.length/courseperpage);
         const currentData = () => {
             const begin = (currentPage-1) * courseperpage;
-            const end = begin * courseperpage;
-            return data.slice(begin,end);
+            const end = begin + courseperpage;
+            return filterCourses.slice(begin,end);
         };
         const next =() => {
             setCurrentPage(currentPage => Math.min(currentPage+1,maxPage))
         }
         const prev =() => {
-            setCurrentPage(currentPage => Math.max(currentPage-1,maxPage));
+            setCurrentPage(currentPage => Math.max(1,currentPage-1));
         }
         const jump = (page) => {
-            const pageNumber = Math.max(1,page);
-            setCurrentPage(currentPage => Math.min(pageNumber,maxPage));
+            const pageNumber = Math.min(Math.max(1, page), maxPage);
+            setCurrentPage(pageNumber);
 
         }
         return {next,prev,jump,currentData,currentPage,maxPage}
@@ -100,62 +113,63 @@ const Courses = () => {
                     </Box>
                     </div>
                     <div>
-                    {allcourses.map(course => 
-                    (<Box sx={{ flexGrow: 1,paddingTop:'30px' }}>
-                    <Grid container spacing={10} >
-                        <Grid item xs size ={12}>
-                        <Card sx ={{display:"flex",flexDirection:"row",gap:"20px",borderRadius:"20px",width:"990px"}}>
-                            {allcourses.length > 0 && course.CourseImage ? (
-                            <CardMedia component="img" sx ={{height:250,width:410,objectFit:"cover",flexShrink:0}}image={course.CourseImage} />
-                        ) : (
-                            <Typography>Loading Image...</Typography>  // Placeholder until data loads
-                        )}
-                            <CardContent>
-                                <Box sx ={{display:"flex",flexDirection:"column",gap:"15px"}}> 
-                                {allcourses.length>0 && course.CourseProvider ? (<Typography variant = "h6">by {course.CourseProvider}</Typography>):(<Typography>Loading</Typography>)}
-                                
-                                {allcourses.length>0 && course.CourseTitle ? (<Typography variant = "h6"> {course.CourseTitle}</Typography>):(<Typography>Loading</Typography>)}
-                                <Grid container spacing={2}>
-                                    <Grid size={3} sx ={{display:"flex",alignItems:"center"}}>
-                                        <AccessTimeIcon sx = {{color:"orange"}}></AccessTimeIcon>
-                                        {allcourses.length>0 && course.CourseDuration ? (<Typography variant = "p">{course.CourseDuration}</Typography>):(<Typography>Loading</Typography>)}
-                                    </Grid>
-                                    <Grid size={3}>
-                                        <RateReviewIcon sx ={{color:"orange"}}></RateReviewIcon>
-                                        {allcourses.length>0 && course.NumberofReviews ? (<Typography variant = "p"> {course.NumberofReviews}</Typography>):(<Typography>Loading</Typography>)}
-                                    </Grid>
-                                    <Grid size={3}>
-                                        <SignalCellularAltIcon sx = {{color:"orange"}}></SignalCellularAltIcon>
-                                        {allcourses.length>0 && course.NumberofReviews ? (<Typography variant = "p"> {course.NumberofReviews}</Typography>):(<Typography>Loading</Typography>)}
-                                    </Grid>
-                                    <Grid size={3}>
-                                        <FileCopyIcon sx ={{color:"orange"}}></FileCopyIcon>
-                                        {allcourses.length>0 && course.NumLessons ? (<Typography variant = "p"> {course.NumLessons}</Typography>):(<Typography>Loading</Typography>)}
-                                    </Grid>
-                                </Grid>
-                                <Divider sx ={{paddingTop:'40px'}}></Divider>
-                                <Box>
-                                    <Stack direction="row" justifyContent="space-between">
-                                        <Box>
-                                        {allcourses.length>0 && course.Price ? (<Typography variant = "p"> ${course.Price}</Typography>):(<Typography>Loading</Typography>)}
-                                        <Typography variant = 'p'sx ={{paddingLeft:"5px",color:"green",fontWeight:'bold'}}>Free</Typography>
-                                        </Box>
-                                        <Box sx ={{display:"flex",justifyContent:"flex-end",width:"100px"}}>
-                                            <Typography sx ={{fontWeight:"bold"}}>View More</Typography>
-                                        </Box>
-                                      
-                                    </Stack>
-                                </Box>
-                                </Box>
-                            </CardContent>
+                    {coursedata.currentData().map(course => 
+                    (<Box sx={{ flexGrow: 1, paddingTop: '30px' }}>
+                        <Grid container spacing={10}>
+                            <Grid item xs size={12}>
+                                <Card sx={{ display: "flex", flexDirection: "row", gap: "20px", borderRadius: "20px", width: "990px" }}>
+                                    {course.CourseImage ? (
+                                        <CardMedia component="img" sx={{ height: 250, width: 410, objectFit: "cover", flexShrink: 0 }} image={course.CourseImage} />
+                                    ) : (
+                                        <Typography>Loading Image...</Typography>  
+                                    )}
+                                    <CardContent>
+                                        <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}> 
+                                            {course.CourseProvider ? (<Typography variant="h6">by {course.CourseProvider}</Typography>) : (<Typography>Loading</Typography>)}
+                                            
+                                            {course.CourseTitle ? (<Typography variant="h6">{course.CourseTitle}</Typography>) : (<Typography>Loading</Typography>)}
 
-                           
-                        </Card>
+                                            <Grid container spacing={2}>
+                                                <Grid size={3} sx={{ display: "flex", alignItems: "center" }}>
+                                                    <AccessTimeIcon sx={{ color: "orange" }} />
+                                                    {course.CourseDuration ? (<Typography variant="p">{course.CourseDuration}</Typography>) : (<Typography>Loading</Typography>)}
+                                                </Grid>
+                                                <Grid size={3}>
+                                                    <RateReviewIcon sx={{ color: "orange" }} />
+                                                    {course.NumberofReviews ? (<Typography variant="p">{course.NumberofReviews}</Typography>) : (<Typography>Loading</Typography>)}
+                                                </Grid>
+                                                <Grid size={3}>
+                                                    <SignalCellularAltIcon sx={{ color: "orange" }} />
+                                                    {course.NumberofReviews ? (<Typography variant="p">{course.NumberofReviews}</Typography>) : (<Typography>Loading</Typography>)}
+                                                </Grid>
+                                                <Grid size={3}>
+                                                    <FileCopyIcon sx={{ color: "orange" }} />
+                                                    {course.NumLessons ? (<Typography variant="p">{course.NumLessons}</Typography>) : (<Typography>Loading</Typography>)}
+                                                </Grid>
+                                            </Grid>
+
+                                            <Divider sx={{ paddingTop: '40px' }} />
+
+                                            <Box>
+                                                <Stack direction="row" justifyContent="space-between">
+                                                    <Box>
+                                                        {course.Price ? (<Typography variant="p">${course.Price}</Typography>) : (<Typography>Loading</Typography>)}
+                                                        <Typography variant='p' sx={{ paddingLeft: "5px", color: "green", fontWeight: 'bold' }}>Free</Typography>
+                                                    </Box>
+                                                    <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100px" }}>
+                                                        <Typography sx={{ fontWeight: "bold" }}>View More</Typography>
+                                                    </Box>
+                                                </Stack>
+                                            </Box>
+                                        </Box>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
                         </Grid>
-                      
-                    </Grid>
-                   
-                    </Box>))}
+                    </Box>)
+                )}
+
+
                     <Box 
                         sx={{ 
                             display: "flex", 
@@ -179,13 +193,20 @@ const Courses = () => {
                
                 <Box>
                      <Typography variant="h6" >Course Categories</Typography>
-                    <FormGroup sx = {{pl:0}}>
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Commercial" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Office" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Job" />
-                        <FormControlLabel control={<Checkbox defaultChecked />} label="Educate" />
-                        
+                     <FormGroup>
+                        {categories.map((category) => (
+                        <FormControlLabel
+                            key={category}
+                            control={
+                            <Checkbox
+                                value={category}
+                                onChange={handleCategoryChange}
+                                checked={selectedCategories.includes(category)}
+                            />
+                            }
+                            label={category}
+                        />
+                        ))}
                     </FormGroup>
                     <Typography variant="h6" >Instructors</Typography>
                     <FormGroup sx = {{pl:0}}>

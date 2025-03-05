@@ -12,7 +12,7 @@ const CourseSchema = new mongoose.Schema({
     NumStudents: {type:Number},
     NumLessons : {type:String},
     Price : {type:String},
-    CourseCategory: {type:String}
+    Category: {type:String}
 })
 const CourseModel = new mongoose.model("courses",CourseSchema);
 export default CourseModel;

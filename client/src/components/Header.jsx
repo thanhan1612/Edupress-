@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
+
 import './Header.css';
+import { Avatar } from '@mui/material';
 
 const Header = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <header className="header">
       <div className="container">
@@ -27,10 +30,17 @@ const Header = () => {
         </nav>
 
         {/* Search & Auth */}
-        <div className="header-actions">
-          <NavLink to="/login" className="login-link">Login / Register</NavLink>
+        {user ? (
+          <div className='flex flex-row items-center gap-1 border-2 rounded-lg p-2'>
+            <h1>{user.userName}</h1>
+            <Avatar>{user.userName.charAt(0)}</Avatar>
+          </div>
+        ): 
+        (<div className="header-actions">
+          <NavLink to="/login" className="login-link">Login</NavLink>
+          <NavLink to ="/signup" className= "">/ Register</NavLink>
           <FaSearch className="search-icon" />
-        </div>
+        </div>)}
       </div>
     </header>
   );
