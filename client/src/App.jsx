@@ -8,12 +8,12 @@ import OTPverify from "./Pages/OTPsend/OTPsend";
 import Reset from "./Pages/OTPsend/Reset";
 import { createContext, useState } from "react";
 import Header from './components/Header';
-import Home from "./pages/Home";
+
 import Courses from "./Pages/AllCourses/AllCourses";
 import BlogListingLayout from "./Pages/BlogListing/BlogListingLayout";
 import BlogDetail from "./Pages/BlogListing/BlogDetail";
 import BlogList from "./Pages/BlogListing/BlogComponents/BlogList";
-import { AuthContext } from "./Context.jsx";
+
 
 
 export const RecoveryContext = createContext();
@@ -104,7 +104,7 @@ function App() {
           <Route path="/otpsend" element={<OTPverify />} />
           <Route path="/reset" element={<Reset />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/homepage/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
           <Route
             path="/blog"
             element={

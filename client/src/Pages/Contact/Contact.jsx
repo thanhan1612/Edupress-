@@ -10,7 +10,7 @@ const Contact =() =>{
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormdata((prevData) => ({ ...prevData, [id]: value }));
-        
+    }
     return (
         <Container maxWidth="lg" sx={{ flexGrow: 1, minHeight: "50vh", p: 2 }}>
             <Box className="flex gap-8">
@@ -51,5 +51,5 @@ const Contact =() =>{
             </Box>
         </Container>
     )
-}};
+};
 export default Contact;

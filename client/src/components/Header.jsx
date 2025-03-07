@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React  from 'react';
 import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
@@ -20,6 +20,7 @@ const Header = () => {
     setAnchorEl(null);
   };
   const handleClickContact =() => {
+    handleClose();
     navigate('/contact');
   }
 
@@ -34,7 +35,7 @@ const Header = () => {
   }
   return (
     <header className="header">
-      <div className="container">
+      <div className="flex flex-row items-center gap-6">
         {/* Logo */}
         <div className="logo">
           {logo && <img src={logo} alt="EduPress" className="logo-img" />} 
