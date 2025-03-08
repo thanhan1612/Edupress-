@@ -8,12 +8,12 @@ import OTPverify from "./Pages/OTPsend/OTPsend";
 import Reset from "./Pages/OTPsend/Reset";
 import { createContext, useState } from "react";
 import Header from './components/Header';
-
+import BreadCrumbs from "./components/BreadCrumbs";
 import Courses from "./Pages/AllCourses/AllCourses";
 import BlogListingLayout from "./Pages/BlogListing/BlogListingLayout";
 import BlogDetail from "./Pages/BlogListing/BlogDetail";
 import BlogList from "./Pages/BlogListing/BlogComponents/BlogList";
-
+import Footer from "./components/Footer";
 
 
 export const RecoveryContext = createContext();
@@ -95,7 +95,7 @@ function App() {
       <Router>
 
       <Header />
-
+      <BreadCrumbs />
 
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -131,6 +131,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
+      <Footer />
     </RecoveryContext.Provider>
    
   );

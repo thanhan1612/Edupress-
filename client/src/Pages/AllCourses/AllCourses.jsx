@@ -89,7 +89,7 @@ const Courses = () => {
       <Container maxWidth="xl" sx ={{width:"1290px"}} >
         <div className="courses" style = {{display:"flex",flexWrap:"nowrap",gap:"30px"}} >
             <div className="coursedisplay" style = {{display:"flex",flexDirection:"column"}}>
-                <div className="searchbar" style ={{justifyContent:"spaceBetween",alignItems:"center",display:"flex",width:"960px"}}>
+                <div className="searchbar" style ={{justifyContent:"space-between",alignItems:"center",display:"flex",width:"960px"}}>
                     
                     <Typography variant = {"h2"}>All Courses</Typography>
                     <Box sx ={{justifyContent:"center",alignItems:"center",display:"flex",gap:"20px"}}>

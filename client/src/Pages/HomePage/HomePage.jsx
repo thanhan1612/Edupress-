@@ -8,11 +8,11 @@ import Footer from '../../components/Footer';
 const HomePage = () => {
   return (
     <>
+     
       <Hero />
-
       <Categories/>
       <Courses/>
-      <Footer />
+     
     </>
   );
 };

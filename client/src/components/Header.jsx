@@ -35,9 +35,9 @@ const Header = () => {
   }
   return (
     <header className="header">
-      <div className="flex flex-row items-center gap-6">
+      <div className="flex flex-row items-center gap-10">
         {/* Logo */}
-        <div className="logo">
+        <div className="flex items-center pl-5">
           {logo && <img src={logo} alt="EduPress" className="logo-img" />} 
           <span className="logo-text">EduPress</span>
         </div>
@@ -83,8 +83,8 @@ const Header = () => {
         {/* Search & Auth */}
         {user ? (
           <div className='flex flex-row gap-2'>
-          <div className='flex flex-row items-center gap-1 border-2 rounded-lg p-2'>
-            <h1>{user.userName}</h1>
+          <div className='flex flex-row items-center gap-1 '>
+         
             <Avatar>{user.userName.charAt(0)}</Avatar>
           </div>
             <button onClick={logout}>Logout</button>
