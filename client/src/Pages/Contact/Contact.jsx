@@ -3,14 +3,39 @@ import React, { useState } from "react";
 import { Container,Box,Typography, TextField, Checkbox, FormControlLabel,Button } from "@mui/material";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import axios from "axios";
 const Contact =() =>{
     const [formdata,setFormdata] = useState({
-        name:"",email:"",data:""
+        email:"",comment:"",name:""
     });
+    const [rememberMe,setRememberMe] = useState(false);
+    const handleRememberMeChange = () => {
+        setRememberMe(!rememberMe);
+    };
+
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormdata((prevData) => ({ ...prevData, [id]: value }));
     }
+    const sendEmail = async (rememberMe, formdata) => {
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL}/users/contact`,
+                {
+                   
+                    email: formdata.email,
+                    comment: formdata.comment
+                }
+            );
+            alert("Your comment has been sent successfully");
+            if (rememberMe) {
+                localStorage.setItem("email", formdata.email)
+                localStorage.setItem("name",formdata.name)
+            }
+        } catch (error) {
+            alert(`Something is wrong: ${error.message}`);
+        }
+    };
     return (
         <Container maxWidth="lg" sx={{ flexGrow: 1, minHeight: "50vh", p: 2 }}>
             <Box className="flex gap-8">
@@ -40,14 +65,14 @@ const Contact =() =>{
                 <Box >
                     <form >
                         <Box className ="flex flex-row justify-between">
-                            <TextField className="w-[48%]" label = "Name*" onChange={handleChange}/>
-                            <TextField className="w-[48%] " label = "Email*" onChange={handleChange}/>
+                            <TextField className="w-[48%]" label = "Name*" onChange={handleChange} id ="name" value = {formdata.name}/>
+                            <TextField className="w-[48%] " label = "Email*" onChange={handleChange} id ="email" value = {formdata.email}/>
                         </Box>
-                            <TextField label = "Comment" sx ={{marginTop:4}} />
+                            <TextField label = "Comment" sx ={{marginTop:4}} onChange={handleChange}  id = "comment" value = {formdata.comment}/>
                     </form>
                 </Box>
-               <FormControlLabel control={<Checkbox sx = {{width:40}} />} label="Save my name, email in this brower for the next time I comment" />
-                <Button variant = "contained" className = "w-1/6 " sx ={{borderRadius:8,backgroundColor:"orange"}}>Post Comment</Button>
+               <FormControlLabel control={<Checkbox sx = {{width:40}} />} label="Save my name, email in this brower for the next time I comment" checked= {rememberMe} onChange = {handleRememberMeChange}/>
+                <Button variant = "contained" className = "w-1/6 " sx ={{borderRadius:8,backgroundColor:"orange"}} onClick={sendEmail}>Post Comment</Button>
             </Box>
         </Container>
     )
