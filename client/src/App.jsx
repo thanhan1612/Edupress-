@@ -13,6 +13,7 @@ import Courses from "./Pages/AllCourses/AllCourses";
 import BlogListingLayout from "./Pages/BlogListing/BlogListingLayout";
 import BlogDetail from "./Pages/BlogListing/BlogDetail";
 import BlogList from "./Pages/BlogListing/BlogComponents/BlogList";
+import CourseDisplay from "./Pages/AllCourses/CourseDisplay";
 import Footer from "./components/Footer";
 
 
@@ -105,6 +106,7 @@ function App() {
           <Route path="/reset" element={<Reset />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path = "/courses/:CourseTitle" element={<CourseDisplay />} />
           <Route
             path="/blog"
             element={

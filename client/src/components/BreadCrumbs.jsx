@@ -14,7 +14,7 @@ const BreadCrumbs = () => {
                                 const to = `/${pathnames.slice(0,idx+1).join('/')}`
                                 const isLast = idx === pathnames.length-1;
                                 return isLast? (<Typography key ={to} color="text.primary" >
-                                        {val}
+                                        {decodeURIComponent(val)}
                                 </Typography>) : (
                                     <Link key = {to} component={RouterLink} to ={to} underline="hover">
                                     {val}</Link>

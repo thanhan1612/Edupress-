@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Typography, TextField, AppBar, Stack,Box, InputAdornment, Menu, CardMedia, CardContent, Pagination } from "@mui/material";
+import { Container, Typography, TextField, AppBar, Stack,Box, InputAdornment, Menu, CardMedia, CardContent, Pagination ,Button} from "@mui/material";
 import Card from "@mui/material/Card";
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -14,10 +14,12 @@ import Divider from '@mui/material/Divider';
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Courses = () => {
+    const navigate = useNavigate();
     const [allcourses,setAllcourses] = useState([]);
     const [selectedCategories,setSelectedCategories] =useState([]);
     const categories = ["Maths","Computer Science", "Literature"]
@@ -83,8 +85,9 @@ const Courses = () => {
             isMounted = false;  // Cleanup function runs when component unmounts
         };
     }, []);
-   
-    
+    const handleClickNavigateCourse = (CourseTitle) => {
+        navigate(`/courses/${CourseTitle}`)
+    }    
   return (
       <Container maxWidth="xl" sx ={{width:"1290px"}} >
         <div className="courses" style = {{display:"flex",flexWrap:"nowrap",gap:"30px"}} >
@@ -157,7 +160,7 @@ const Courses = () => {
                                                         <Typography variant='p' sx={{ paddingLeft: "5px", color: "green", fontWeight: 'bold' }}>Free</Typography>
                                                     </Box>
                                                     <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100px" }}>
-                                                        <Typography sx={{ fontWeight: "bold" }}>View More</Typography>
+                                                        <Button sx={{ fontWeight: "bold",color:"orange" }} onClick={ ()=>handleClickNavigateCourse(course.CourseTitle)}>View More</Button>
                                                     </Box>
                                                 </Stack>
                                             </Box>
