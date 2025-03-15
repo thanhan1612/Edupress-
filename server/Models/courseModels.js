@@ -12,7 +12,8 @@ const CourseSchema = new mongoose.Schema({
     NumStudents: {type:Number},
     NumLessons : {type:String},
     Price : {type:String},
-    Category: {type:String}
+    Category: {type:String},
+    Instructor_id: {type:mongoose.Schema.Types.ObjectId, ref :"Instructors"}
 })
 const CourseModel = new mongoose.model("courses",CourseSchema);
 export default CourseModel;

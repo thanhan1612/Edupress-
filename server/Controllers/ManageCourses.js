@@ -17,7 +17,7 @@ const getCourses = async (req,res) => {
 }
 export const getCourseDetails = async (req,res) => {
     try {
-        const CourseTitle = req.params;
+        const {CourseTitle} = req.params;
         const Course = await CourseModel.findOne({CourseTitle:CourseTitle})
         if (!Course) {
             return res.status(404).json({message:"Course not found"});
