@@ -1,17 +1,14 @@
 .header {
   background: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
+  padding: 5px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  width: 100%;
   top: 0;
-  
 }
 
-.container {
+.navba {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +22,7 @@
 }
 
 .logo-img {
-  height: 40px;
+  height: 25px;
   margin-right: 10px;
 }
 

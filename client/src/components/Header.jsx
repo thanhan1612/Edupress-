@@ -7,7 +7,7 @@ import './Header.css';
 const Header = () => {
   return (
     <header className="header">
-      <div className="container">
+      <div className="navba">
         {/* Logo */}
         <div className="logo">
           {logo && <img src={logo} alt="EduPress" className="logo-img" />} 
