@@ -1,6 +1,7 @@
 .footer {
-  background: #f8f8f8;
+  background-color: #D3D3D3;
   padding: 40px 0;
+  margin-top: 50px;
 }
 
 .footer-container {
@@ -10,6 +11,7 @@
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+ 
 }
 
 .footer-section {

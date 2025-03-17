@@ -75,6 +75,7 @@ export default function SignUpPage() {
         password: "",
         confirmPassword: "",
       });
+      
 
       setTimeout(() => {
         navigate("/signin");

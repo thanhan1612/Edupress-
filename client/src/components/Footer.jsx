@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container footer-container">
+      <div className="footer-container">
         <div className="footer-section">
           <h2 className="logo">EduPress</h2>
           <p>Một ngày mới mang đến những cơ hội và thách thức mới cho tất cả chúng ta.</p>
