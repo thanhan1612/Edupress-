@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 
 
 
-import CourseModel from "./Models/courseModels.js";
 
 import userRouters from "./Routes/userRoutes.js";
 import { errorMiddlewares } from "./Middlewares/errorMiddlewares.js";
@@ -34,7 +33,6 @@ app.use((req,res,next) => {
 
 app.use('/api/users', userRouters)
 app.use('/api/admins', adminRouters)
-
 
 app.use(errorMiddlewares);
 const port = process.env.PORT || 8080;

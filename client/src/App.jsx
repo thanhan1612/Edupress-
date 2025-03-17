@@ -15,7 +15,11 @@ import BlogDetail from "./Pages/BlogListing/BlogDetail";
 import BlogList from "./Pages/BlogListing/BlogComponents/BlogList";
 import CourseDisplay from "./Pages/AllCourses/CourseDisplay";
 import Footer from "./components/Footer";
-
+import Overview from "./Pages/AllCourses/Coursecomponents/Overview";
+import Curriculum from "./Pages/AllCourses/Coursecomponents/Currculumn";
+import FAQs from "./Pages/AllCourses/Coursecomponents/FAQS";
+import Instructor from "./Pages/AllCourses/Coursecomponents/Instructor";
+import Reviews from "./Pages/AllCourses/Coursecomponents/Reviews";
 
 export const RecoveryContext = createContext();
 
@@ -106,7 +110,15 @@ function App() {
           <Route path="/reset" element={<Reset />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path = "/courses/:CourseTitle" element={<CourseDisplay />} />
+          <Route path="/courses/:CourseTitle" element={<CourseDisplay />}>
+                    <Route index element={<Overview />} /> {/* Default tab */}
+                    <Route path="overview" element={<Overview />} />
+                    <Route path="curriculum" element={<Curriculum />} />
+                    <Route path="instructors" element={<Instructor />} />
+                    <Route path="faqs" element={<FAQs />} />
+                    <Route path="reviews" element={<Reviews />} />
+           </Route>
+
           <Route
             path="/blog"
             element={

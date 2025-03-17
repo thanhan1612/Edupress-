@@ -4,6 +4,7 @@ import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Overview from "./Coursecomponents/Overview.jsx";
 import { useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 //icons
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import SchoolIcon from '@mui/icons-material/School';
@@ -13,7 +14,7 @@ const CourseDisplay = () => {
     const {CourseTitle} = useParams();
     const navigate = useNavigate()
     const handleClick =(id) => {
-        
+        navigate(`${id}`)
     }
     
     useEffect(() => {
@@ -71,14 +72,14 @@ const CourseDisplay = () => {
         </Box>
         <Box className="pt-[10px] ml-[350px] max-w-[589.98px]">
             <Box className="  flex flex-row ">
-                <Box  id= "overview" className ="border-2 border-r-0 border-black p-4 rounded-tl-lg hover:bg-gray-200 hover: text-orange transition all" onClick={handleClick}><Typography variant = "h6" className="hover:text-orange-300">Overview</Typography></Box>
-                <Box id= "curriculumn" className ="border-2 border-r-0 border-black p-4 hover:bg-gray-200 hover: text-orange transition all" onClick={handleClick}><Typography variant = "h6" className="hover:text-orange-300">Curriculumn</Typography></Box>
-                <Box id= "instructors" className ="border-2 border-r-0 border-black p-4 hover:bg-gray-200 hover: text-orange transition all" onClick={handleClick}><Typography variant = "h6" className="hover:text-orange-300">Instructors</Typography></Box>
-                <Box id= "faqs" className ="border-2 border-r-0 border-black p-4 hover:bg-gray-200 hover: text-orange transition all" onClick={handleClick}><Typography variant = "h6" className="hover:text-orange-300">FAQS</Typography></Box>
-                <Box id= "reviews"  className ="border-2 border-black p-4 rounded-tr-lg hover:bg-gray-200 hover: text-orange transition all" onClick={handleClick}><Typography variant = "h6" className="hover:text-orange-300">Reviews</Typography></Box>
+                <Box  id= "overview" className ="border-2 border-r-0 border-black p-4 rounded-tl-lg hover:bg-gray-200 hover: text-orange transition all" onClick={() => handleClick("overview")}><Typography variant = "h6" className="hover:text-orange-300">Overview</Typography></Box>
+                <Box id= "curriculum" className ="border-2 border-r-0 border-black p-4 hover:bg-gray-200 hover: text-orange transition all" onClick={() => handleClick("curriculum")}><Typography variant = "h6" className="hover:text-orange-300">Curriculumn</Typography></Box>
+                <Box id= "instructors" className ="border-2 border-r-0 border-black p-4 hover:bg-gray-200 hover: text-orange transition all" onClick={() => handleClick("instructors")}><Typography variant = "h6" className="hover:text-orange-300">Instructors</Typography></Box>
+                <Box id= "faqs" className ="border-2 border-r-0 border-black p-4 hover:bg-gray-200 hover: text-orange transition all" onClick={() => handleClick("FAQS")}><Typography variant = "h6" className="hover:text-orange-300">FAQS</Typography></Box>
+                <Box id= "reviews"  className ="border-2 border-black p-4 rounded-tr-lg hover:bg-gray-200 hover: text-orange transition all" onClick={() => handleClick("reviews")}><Typography variant = "h6" className="hover:text-orange-300">Reviews</Typography></Box>
             </Box>
             <Box className="pt-[12px] bg-gray-300">
-                <Overview className="p-2" course ={course} />
+                <Outlet  />
             </Box>
             
         </Box>
