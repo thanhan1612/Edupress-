@@ -5,12 +5,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
   top: 0;
 }
 
 .navba {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 90%;
   max-width: 1200px;

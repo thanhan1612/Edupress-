@@ -1,4 +1,5 @@
-import { Typography, Box, Button, Container} from "@mui/material";
+
+import { Typography, Box, Button, Container, TextField, FormControlLabel, Checkbox } from "@mui/material";
 import React from "react";
 import { useState,useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -12,6 +13,8 @@ import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 const CourseDisplay = () => {
     const [course,setCourse]= useState(null);
     const {CourseTitle} = useParams();
+    const [formData, setFormData] = useState({ name: "", email: "", comment: "" });
+    const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate()
     const handleClick =(id) => {
         navigate(`${id}`)
@@ -27,6 +30,14 @@ const CourseDisplay = () => {
             .catch((error) => console.error(error));
             
     }, [CourseTitle]);
+    const handleChange = (event) => {
+        const { id, value } = event.target;
+        setFormData((prev) => ({ ...prev, [id]: value }));
+    };
+
+    const handleRememberMeChange = () => setRememberMe((prev) => !prev);
+   
+    const sendEmail = () => console.log("Submitting comment:", formData);
     if (!course){
         return (
             <Typography>Loading...</Typography>
@@ -79,9 +90,24 @@ const CourseDisplay = () => {
                 <Box id= "reviews"  className ="border-2 border-black p-4 rounded-tr-lg hover:bg-gray-200 hover: text-orange transition all" onClick={() => handleClick("reviews")}><Typography variant = "h6" className="hover:text-orange-300">Reviews</Typography></Box>
             </Box>
             <Box className="pt-[12px] bg-gray-300">
-                <Outlet  />
+                <Outlet context ={{course}}  />
             </Box>
             
+        </Box>
+        <Box className = "ml-[350px] max-w-[1000px] pt-[10px]  flex flex-col gap-4">
+               <Typography variant ="h2">Contact us</Typography>
+                            <Typography variant = "p">Your email address will not be published. Required fields are marked *</Typography>
+                            <Box >
+                                <form >
+                                    <Box className ="flex flex-row justify-between">
+                                        <TextField className="w-[48%]" label = "Name*" onChange={handleChange} id ="name" value = {formData.name}/>
+                                        <TextField className="w-[48%] " label = "Email*" onChange={handleChange} id ="email" value = {formData.email}/>
+                                    </Box>
+                                        <TextField label = "Comment" sx ={{marginTop:4}} onChange={handleChange}  id = "comment" value = {formData.comment}/>
+                                </form>
+                            </Box>
+                           <FormControlLabel control={<Checkbox sx = {{width:40}} />} label="Save my name, email in this brower for the next time I comment" checked= {rememberMe} onChange = {handleRememberMeChange}/>
+                            <Button variant = "contained" className = "w-1/6 " sx ={{borderRadius:8,backgroundColor:"orange"}} onClick={sendEmail}>Post Comment</Button>
         </Box>
         
     </Box>

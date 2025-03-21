@@ -199,8 +199,8 @@ export default function SignInPage() {
   }, [navigate]);
 
   return (
-    <div className="w-full flex justify-center items-center">
-      <div className="max-w-screen-sm border-2 rounded-2xl my-10">
+    <div className="w-full min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="w-full max-w-lg border-2 rounded-2xl bg-white shadow-lg p-8">
         <div className="text-4xl font-semibold text-gray-800 my-14 text-center">
           Log In
         </div>
@@ -261,7 +261,7 @@ export default function SignInPage() {
         <div className="mb-10 w-full flex justify-center items-center flex-col">
           <div className="flex justify-center text-blue-500 mb-5" onClick= {() => navigateToOtp()}>Forgot Password?</div>
           <Link to="/signin" className="flex justify-center">
-            <button className="bg-gray-200 rounded-2xl w-1/2 flex justify-center items-center hover:bg-gray-500" onClick={() => login()}>
+            <button className="flex justify-center items-center gap-2 bg-gray-200 p-3 rounded-lg mt-4" onClick={() => login()}>
               <span className="text-lg font-medium hover:text-red-800 w-fit mr-3 p-2" >
                 Log In with 
               </span>

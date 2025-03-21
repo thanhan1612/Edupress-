@@ -93,8 +93,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="w-full flex justify-center items-center">
-      <div className="max-w-screen-sm border-2 rounded-2xl my-10">
+    <div className="w-full min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="w-full max-w-lg border-2 rounded-2xl bg-white shadow-lg p-8">
         <div className="text-4xl font-semibold text-gray-800 my-14 text-center">
           Register
         </div>
@@ -181,7 +181,7 @@ export default function SignUpPage() {
           <div className="flex justify-center">Already have an account?</div>
          
             <Link to="/signin" className="flex justify-center">
-            <button className="bg-gray-200 rounded-2xl w-1/2 flex justify-center items-center hover:bg-gray-50">
+            <button className="flex justify-center items-center gap-2 bg-gray-200 p-3 rounded-lg mt-4">
               <span className="text-lg font-medium hover:text-red-800 w-fit mr-3 p-2">
                 Log in with 
               </span>

@@ -18,6 +18,9 @@ export default {
           lightgrey: "#EAEAEA",
           whitegrey: "#F5F5F5",
         },
+        fontFamily: {
+          title:["Exo","sans-serif"]
+        }
       },
     },
   },

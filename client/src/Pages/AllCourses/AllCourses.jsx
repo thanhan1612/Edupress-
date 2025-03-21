@@ -118,16 +118,16 @@ const Courses = () => {
                     <div>
                     {coursedata.currentData().map(course => 
                     (<Box sx={{ flexGrow: 1, paddingTop: '30px' }}>
-                        <Grid container spacing={10}>
-                            <Grid item xs size={12}>
+                        <Grid container spacing={4}>
+                            <Grid item xs={12}>
                                 <Card sx={{ display: "flex", flexDirection: "row", gap: "20px", borderRadius: "20px", width: "990px" }}>
                                     {course.CourseImage ? (
                                         <CardMedia component="img" sx={{ height: 250, width: 410, objectFit: "cover", flexShrink: 0 }} image={course.CourseImage} />
                                     ) : (
                                         <Typography>Loading Image...</Typography>  
                                     )}
-                                    <CardContent>
-                                        <Box sx={{ display: "flex", flexDirection: "column", gap: "15px" }}> 
+                                    <CardContent sx= {{flexGrow:1, width:"100%"}}>
+                                        <Box sx={{ display: "flex", flexDirection: "column", gap: "15px", width:"100%"}}> 
                                             {course.CourseProvider ? (<Typography variant="h6">by {course.CourseProvider}</Typography>) : (<Typography>Loading</Typography>)}
                                             
                                             {course.CourseTitle ? (<Typography variant="h6">{course.CourseTitle}</Typography>) : (<Typography>Loading</Typography>)}
@@ -139,7 +139,7 @@ const Courses = () => {
                                                 </Grid>
                                                 <Grid size={3}>
                                                     <RateReviewIcon sx={{ color: "orange" }} />
-                                                    {course.NumberofReviews ? (<Typography variant="p">{course.NumberofReviews}</Typography>) : (<Typography>Loading</Typography>)}
+                                                    {course.NumberofReviews ? (<Typography variant="p">{course.NumberofReviews} reviews</Typography>) : (<Typography>Loading</Typography>)}
                                                 </Grid>
                                                 <Grid size={3}>
                                                     <SignalCellularAltIcon sx={{ color: "orange" }} />

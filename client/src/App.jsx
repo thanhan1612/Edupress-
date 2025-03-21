@@ -20,9 +20,13 @@ import Curriculum from "./Pages/AllCourses/Coursecomponents/Currculumn";
 import FAQs from "./Pages/AllCourses/Coursecomponents/FAQS";
 import Instructor from "./Pages/AllCourses/Coursecomponents/Instructor";
 import Reviews from "./Pages/AllCourses/Coursecomponents/Reviews";
-
+import { ThemeProvider,createTheme } from "@mui/material/styles";
 export const RecoveryContext = createContext();
-
+const theme = createTheme({
+  typography: {
+    fontFamily: "'Exo', sans-serif", // Set the font for MUI Typography globally
+  },
+});
 const blogs = [
   {
     title: "random",
@@ -97,6 +101,8 @@ function App() {
     
     <RecoveryContext.Provider
       value={{ setPage, page, otp, setOTP, setEmail, email }}>
+        <ThemeProvider theme={theme}>
+       
       <Router>
 
       <Header />
@@ -146,6 +152,8 @@ function App() {
         </Routes>
       </Router>
       <Footer />
+      
+      </ThemeProvider>
     </RecoveryContext.Provider>
    
   );
