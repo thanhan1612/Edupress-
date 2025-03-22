@@ -21,6 +21,8 @@ import FAQs from "./Pages/AllCourses/Coursecomponents/FAQS";
 import Instructor from "./Pages/AllCourses/Coursecomponents/Instructor";
 import Reviews from "./Pages/AllCourses/Coursecomponents/Reviews";
 import { ThemeProvider,createTheme } from "@mui/material/styles";
+import Payment from "./Pages/Payment/Payment";
+import Completion from "./Pages/Payment/Completion";
 export const RecoveryContext = createContext();
 const theme = createTheme({
   typography: {
@@ -149,6 +151,8 @@ function App() {
             />
             <Route path=":id" element={<BlogDetail />} />
           </Route>
+          <Route path ="/payment" element = {<Payment />} />
+          <Route path ='/completion' element = {<Completion />}/>
         </Routes>
       </Router>
       <Footer />

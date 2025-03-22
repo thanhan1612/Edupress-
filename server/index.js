@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 import userRouters from "./Routes/userRoutes.js";
 import { errorMiddlewares } from "./Middlewares/errorMiddlewares.js";
 import adminRouters from "./Routes/adminRoutes.js";
+import PaymentRouter from "./Routes/payment.js";
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use((req,res,next) => {
 
 app.use('/api/users', userRouters)
 app.use('/api/admins', adminRouters)
+app.use('/api/payment',PaymentRouter)
 
 app.use(errorMiddlewares);
 const port = process.env.PORT || 8080;
