@@ -22,7 +22,12 @@ const Courses = () => {
     const navigate = useNavigate();
     const [allcourses,setAllcourses] = useState([]);
     const [selectedCategories,setSelectedCategories] =useState([]);
-    const categories = ["Maths","Computer Science", "Literature"]
+    const categories = ["Maths","Computer Science", "Literature"];
+  
+        
+        
+
+ 
     const handleCategoryChange = (e) => {
         const {checked,value} = e.target;
         setSelectedCategories((prev) =>
@@ -78,6 +83,7 @@ const Courses = () => {
                     setAllcourses(data.courses);
                       // Prevent state update if component unmounts
                 }
+                
             })
             .catch(() => alert('Cannot display courses'));
     
