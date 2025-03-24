@@ -7,7 +7,7 @@ const BreadCrumbs = () => {
     const location = useLocation();
     const pathnames = location.pathname.split("/").filter((x) => x)
     return (
-        <Box  sx ={{backgroundColor:"#D3D3D3",padding:"10px", paddingLeft:"350px"}}>
+        <Box  sx ={{backgroundColor:"#D3D3D3",padding:"10px", paddingLeft:"280px"}}>
             <Breadcrumbs  aria-label="breadcrumb" separator = {<NavigateNextIcon fontSize="small"/>}>
                             <Link underline='hover' href ='#'>Home</Link>
                             {pathnames.map((val,idx) => {
