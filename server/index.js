@@ -22,9 +22,13 @@ mongoose
   });
 
 const app = express();
+const corsOptions = {
+  origin: 'https://edupress-k997.vercel.app', // Frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+};
 
-
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({limit:"25mb"}));
 app.use((req,res,next) => {
