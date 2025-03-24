@@ -36,9 +36,9 @@ app.use((req,res,next) => {
   next();
 })
 
-app.use('/users', userRouters)
-app.use('/admins', adminRouters)
-app.use('/payment',PaymentRouter)
+app.use('/api/users', userRouters)
+app.use('/api/admins', adminRouters)
+app.use('/api/payment',PaymentRouter)
 
 app.use(errorMiddlewares);
 const port = process.env.PORT || 8080;
