@@ -24,7 +24,7 @@ mongoose
 const app = express();
 
 const corsOptions = {
-  origin: 'https://edupress-k997.vercel.app', // Frontend URL
+  origin: 'https://edupress-6r6g.vercel.app/', // Frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 };
