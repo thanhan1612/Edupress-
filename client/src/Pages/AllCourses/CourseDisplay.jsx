@@ -19,6 +19,9 @@ const CourseDisplay = () => {
     const handleClick =(id) => {
         navigate(`${id}`)
     }
+    const onClickPayNow = (id) => {
+        navigate(`/${id}/payment`,{state:{course}})
+    }
     
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_BASE_URL}/users/courses/${CourseTitle}`)
@@ -74,8 +77,8 @@ const CourseDisplay = () => {
                 <Box className='p-2 flex flex-row items-center justify-center gap-4'>
                     
                         <Typography variant = "p" color="red">${course.Price}</Typography>
-                        <Button variant="contained" className="bg-orange-500">
-                                Start Now
+                        <Button variant="contained" className="bg-orange-500" onClick={() => onClickPayNow(course.CourseTitle)}>
+                                Pay Now
                         </Button>
 
                 </Box>

@@ -151,7 +151,7 @@ function App() {
             />
             <Route path=":id" element={<BlogDetail />} />
           </Route>
-          <Route path ="/payment" element = {<Payment />} />
+          <Route path ="/:CourseTitle/payment" element = {<Payment />} />
           <Route path ='/completion' element = {<Completion />}/>
         </Routes>
       </Router>

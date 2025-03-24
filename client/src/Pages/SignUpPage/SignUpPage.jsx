@@ -44,7 +44,7 @@ export default function SignUpPage() {
     setSuccess("");
 
     const { userName, email, password, confirmPassword } = formData;
-
+    console.log(userName);
     if (!userName || !email || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
@@ -78,7 +78,7 @@ export default function SignUpPage() {
       
 
       setTimeout(() => {
-        navigate("/signin");
+        navigate("/login");
       }, 2000);
     } catch (err) {
       if (err.response?.data?.message === "Email already exists.") {
