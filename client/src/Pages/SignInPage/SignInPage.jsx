@@ -24,7 +24,7 @@ const decryptPassword = (encryptedPassword) => {
 export const signInUser = async (email, password, rememberMe, navigate, setErrorLogIn) => {
   try {
     const response = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/users/signInUser`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/users/signInUser`,
       { email, password }
     );
 
@@ -78,7 +78,7 @@ export default function SignInPage() {
       setEmail(formData.email);
       console.log(OTP);
       setOTP(OTP);
-      axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/otpsend`, {
+      axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/users/otpsend`, {
         OTP,
         recepient_email:formData.email
       }).then(() => navigate("/otpsend")).catch(console.log);

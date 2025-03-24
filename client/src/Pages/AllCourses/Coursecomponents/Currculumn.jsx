@@ -10,7 +10,7 @@ const Curriculum = () => {
     useEffect(() => {
         if (!course?.CourseTitle) return; // Ensure course is available
 
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/users/getInstructor`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/getInstructor`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

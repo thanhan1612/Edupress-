@@ -24,7 +24,7 @@ const CourseDisplay = () => {
     }
     
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/users/courses/${CourseTitle}`)
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/courses/${CourseTitle}`)
             .then((response) => {
                 if (!response.ok) throw new Error("Failed to fetch course details");
                 return response.json();

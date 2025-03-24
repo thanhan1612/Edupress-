@@ -13,7 +13,7 @@ const OTPverify = () => {
     const navigate = useNavigate();
     function resendOTP() {
         if (disable) return;
-        axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/otpsend`,{
+        axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/users/otpsend`,{
             OTP:otp,
             recepient_email:email,
         }).then(() => setDisable(true)).then(() => {

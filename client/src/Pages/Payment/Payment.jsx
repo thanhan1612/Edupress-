@@ -19,7 +19,7 @@ const Payment = () => {
         
     },[]);
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/payment/create-payment-intent`, {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/payment/create-payment-intent`, {
             method:"POST",
             body: JSON.stringify({})
         }).then( async(r) =>{

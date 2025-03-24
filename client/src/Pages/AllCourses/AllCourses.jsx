@@ -67,7 +67,7 @@ const Courses = () => {
     useEffect(() => {
         let isMounted = true;  // Flag to track component mount status
     
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/users/courses`)
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/courses`)
             .then((response) => {
                 if (!response.ok) throw new Error("Bad request");
                 return response.json();

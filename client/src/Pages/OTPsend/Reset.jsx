@@ -35,7 +35,7 @@ const Reset =() => {
       }
       try{
         
-      axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/changePassword`,{
+      axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/users/changePassword`,{
         email,
         newPassword:password
       }).then(()=> navigate('/')).then(() => alert('Your password has successfully been changed'))
